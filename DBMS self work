@@ -1,0 +1,282 @@
+ CREATE DATABASE RUHANDE;
+Query OK, 1 row affected (0.002 sec)
+
+
+MariaDB [(none)]> USE RUHANDE;
+Database changed 
+
+MariaDB [RUHANDE]> CREATE TABLE NGOMA(
+    -> id INT(16) NOT NULL,
+    -> F_NAME VARCHAR(50) NOT NULL,
+    -> L_NAME VARCHAR(50) NOT NULL,
+    -> GENDER VARCHAR(255) NOT NULL,
+    -> PROVINCE VARCHAR(50) NOT NULL,
+    -> DISTRICT VARCHAR(50) NOT NULL,
+    -> SECTOR VARCHAR(50) NOT NULL,
+    -> CELL VARCHAR(50) NOT NULL,
+    -> EMAIL VARCHAR(255) NOT NULL,
+    -> PHONE INT(10) NOT NULL);
+Query OK, 0 rows affected (0.020 sec)                                 
++----------+--------------+------+-----+---------+-------+                                                                                                                                                                                                    MariaDB [RUHANDE]> DESCRIBE NGOMA;
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int(16)      | NO   |     | NULL    |       |
+| F_NAME   | varchar(50)  | NO   |     | NULL    |       |
+| L_NAME   | varchar(50)  | NO   |     | NULL    |       |
+| GENDER   | varchar(255) | NO   |     | NULL    |       |
+| PROVINCE | varchar(50)  | NO   |     | NULL    |       |
+| DISTRICT | varchar(50)  | NO   |     | NULL    |       |
+| SECTOR   | varchar(50)  | NO   |     | NULL    |       |
+| CELL     | varchar(50)  | NO   |     | NULL    |       |
+| EMAIL    | varchar(255) | NO   |     | NULL    |       |
+| PHONE    | int(10)      | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+10 rows in set (0.032 sec)
+
+MariaDB [RUHANDE]> INSERT INTO NGOMA VALUES(1200202020203367, "claude", "iranzi", "M", "North", "musanze", "ngoma", "ruhande", "iranziclaude@gmail.com", 783003561),(234252325325124, "musabika", "fidele", "M", "kigali city", "nyarigenge", "kigali", "kigali", "musabika@gmail.com", 7352428252), (2553722825223, "uwera", "belyse", "F", "kigali city", "nyarugenge", "nyabugogo", "giti", "nadia@gmail.com", 7253528257), (2538232825272, "uwera", "nadia", "F", "north", "rurindo", "kimbabwe", "unkwown", "uwera@gmail.com", 782563533), (2423563426243, "cyezamutima", "emeraudi", "F", "south", "huye", "ngoma", "ruhande", "emeraud@gmail.com", 7636736538),(255245245266358, "uwineza", "joselyne", "F", "east", "bugesera","nyamata", "unknown", "jose@hmail.com", 783453724), (1562435256246, "josiane", "uwera", "F", "kigali", "kicukiro", "rango", "ruhondo", "josiane@gmail.com", 724527526), (145161418108256, "nick", "name", "f", "east", "nyagatare", "rukoma", "benishyaka", "nick@gmail.com", 7656353679), (2562372428256, "shukuru", "mungu", "M", "north", "rurindo", "kirira", "nyirangarama", "shukuru@gmail.com", 783545624), (1341627427256, "joseph", "rukundo", "M", "east", "rwamagana", "ntunga", "ngaburira", "josephy@gmail.com", 7829269262);
+Query OK, 10 rows affected, 15 warnings (0.014 sec)
+Records: 10  Duplicates: 0  Warnings: 15
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR    | CELL         | EMAIL                  | PHONE      |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma     | ruhande      | iranziclaude@gmail.com |  783003561 |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali    | kigali       | musabika@gmail.com     | 2147483647 |
+| 2147483647 | uwera       | belyse   | F      | kigali city | nyarugenge | nyabugogo | giti         | nadia@gmail.com        | 2147483647 |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe  | unkwown      | uwera@gmail.com        |  782563533 |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma     | ruhande      | emeraud@gmail.com      | 2147483647 |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata   | unknown      | jose@hmail.com         |  783453724 |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango     | ruhondo      | josiane@gmail.com      |  724527526 |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma    | benishyaka   | nick@gmail.com         | 2147483647 |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira    | nyirangarama | shukuru@gmail.com      |  783545624 |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga    | ngaburira    | josephy@gmail.com      | 2147483647 |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------------+
+10 rows in set (0.001 sec)
+
+MariaDB [RUHANDE]> SELECT F_NAME , PROVINCE , EMAIL FROM NGOMA WHERE PROVINCE = "north";
++---------+----------+------------------------+
+| F_NAME  | PROVINCE | EMAIL                  |
++---------+----------+------------------------+
+| claude  | North    | iranziclaude@gmail.com |
+| uwera   | north    | uwera@gmail.com        |
+| shukuru | north    | shukuru@gmail.com      |
++---------+----------+------------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [RUHANDE]> SELECT F_NAME, EMAIL, PHONE FROM NGOMA WHERE PROVINCE = "kigali" OR GENDER = "F";
++-------------+-------------------+------------+
+| F_NAME      | EMAIL             | PHONE      |
++-------------+-------------------+------------+
+| uwera       | nadia@gmail.com   | 2147483647 |
+| uwera       | uwera@gmail.com   |  782563533 |
+| cyezamutima | emeraud@gmail.com | 2147483647 |
+| uwineza     | jose@hmail.com    |  783453724 |
+| josiane     | josiane@gmail.com |  724527526 |
+| nick        | nick@gmail.com    | 2147483647 |
++-------------+-------------------+------------+
+6 rows in set (0.001 sec)
+
+MariaDB [RUHANDE]> SELECT F_NAME, EMAIL, PHONE FROM NGOMA WHERE PROVINCE = "kigali" AND GENDER = "F";
++---------+-------------------+-----------+
+| F_NAME  | EMAIL             | PHONE     |
++---------+-------------------+-----------+
+| josiane | josiane@gmail.com | 724527526 |
++---------+-------------------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [RUHANDE]> SELECT F_NAME, EMAIL, PHONE, PROVINCE FROM NGOMA WHERE PROVINCE = "kigali" AND GENDER = "F";
++---------+-------------------+-----------+----------+
+| F_NAME  | EMAIL             | PHONE     | PROVINCE |
++---------+-------------------+-----------+----------+
+| josiane | josiane@gmail.com | 724527526 | kigali   |
++---------+-------------------+-----------+----------+
+1 row in set (0.000 sec)
+
+MariaDB [RUHANDE]> SELECT F_NAME, EMAIL, PHONE, PROVINCE, GENDER FROM NGOMA WHERE PROVINCE = "kigali" AND GENDER = "F";
++---------+-------------------+-----------+----------+--------+
+| F_NAME  | EMAIL             | PHONE     | PROVINCE | GENDER |
++---------+-------------------+-----------+----------+--------+
+| josiane | josiane@gmail.com | 724527526 | kigali   | F      |
++---------+-------------------+-----------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET CELL = "BUSHEKE" WHERE DISTRICT = "RURINDO" AND CELL = "UNKNOWN";
+Query OK, 0 rows affected (0.000 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET CELL = "BUSHEKE" WHERE DISTRICT = "bugesera" AND CELL = "UNKNOWN";
+Query OK, 1 row affected (0.009 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET CELL = "BUSHEKE" WHERE DISTRICT = "RURINDO" AND CELL = "UNKWOWN";
+Query OK, 1 row affected (0.009 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> SELECT CELL FROM NGOMA WHERE CELL = "UNKOWN";
+Empty set (0.001 sec)
+
+MariaDB [RUHANDE]> SELECT CELL FROM NGOMA WHERE CELL = "UNKNOWN";
+Empty set (0.000 sec)
+
+MariaDB [RUHANDE]> SELECT CELL FROM NGOMA WHERE CELL = "UNKWOWN";
+Empty set (0.001 sec)
+
+MariaDB [RUHANDE]> SELECT CELL FROM NGOMA;
++--------------+
+| CELL         |
++--------------+
+| ruhande      |
+| kigali       |
+| giti         |
+| BUSHEKE      |
+| ruhande      |
+| BUSHEKE      |
+| ruhondo      |
+| benishyaka   |
+| nyirangarama |
+| ngaburira    |
++--------------+
+10 rows in set (0.000 sec)
+
+MariaDB [RUHANDE]> ALTER TABLE NGOMA DROP PHONE;
+Query OK, 0 rows affected (0.023 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR    | CELL         | EMAIL                  |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma     | ruhande      | iranziclaude@gmail.com |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali    | kigali       | musabika@gmail.com     |
+| 2147483647 | uwera       | belyse   | F      | kigali city | nyarugenge | nyabugogo | giti         | nadia@gmail.com        |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe  | BUSHEKE      | uwera@gmail.com        |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma     | ruhande      | emeraud@gmail.com      |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata   | BUSHEKE      | jose@hmail.com         |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango     | ruhondo      | josiane@gmail.com      |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma    | benishyaka   | nick@gmail.com         |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira    | nyirangarama | shukuru@gmail.com      |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga    | ngaburira    | josephy@gmail.com      |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [RUHANDE]> ALTER TABLE NGOMA ADD LIST INT UNSIGNED;
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR    | CELL         | EMAIL                  | LIST |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma     | ruhande      | iranziclaude@gmail.com | NULL |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali    | kigali       | musabika@gmail.com     | NULL |
+| 2147483647 | uwera       | belyse   | F      | kigali city | nyarugenge | nyabugogo | giti         | nadia@gmail.com        | NULL |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe  | BUSHEKE      | uwera@gmail.com        | NULL |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma     | ruhande      | emeraud@gmail.com      | NULL |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata   | BUSHEKE      | jose@hmail.com         | NULL |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango     | ruhondo      | josiane@gmail.com      | NULL |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma    | benishyaka   | nick@gmail.com         | NULL |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira    | nyirangarama | shukuru@gmail.com      | NULL |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga    | ngaburira    | josephy@gmail.com      | NULL |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+10 rows in set (0.001 sec)
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 1 WHERE L_NAME = "IRANZI";
+Query OK, 1 row affected (0.016 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 2 WHERE L_NAME = "FIDELE";
+Query OK, 1 row affected (0.016 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 3 WHERE L_NAME = "BELYSE";
+Query OK, 1 row affected (0.015 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 4 WHERE L_NAME = "NADIA";
+Query OK, 1 row affected (0.015 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 5 WHERE L_NAME = "EMERAUDI";
+Query OK, 1 row affected (0.015 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 6 WHERE L_NAME = "JOSELYNE";
+Query OK, 1 row affected (0.016 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 7 WHERE L_NAME = "UWERA";
+Query OK, 1 row affected (0.002 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 8 WHERE L_NAME = "NAME";
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 9 WHERE L_NAME = "MUNGU";
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> UPDATE NGOMA SET LIST = 10 WHERE L_NAME = "RUKUNDO";
+Query OK, 1 row affected (0.016 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR    | CELL         | EMAIL                  | LIST |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma     | ruhande      | iranziclaude@gmail.com |    1 |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali    | kigali       | musabika@gmail.com     |    2 |
+| 2147483647 | uwera       | belyse   | F      | kigali city | nyarugenge | nyabugogo | giti         | nadia@gmail.com        |    3 |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe  | BUSHEKE      | uwera@gmail.com        |    4 |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma     | ruhande      | emeraud@gmail.com      |    5 |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata   | BUSHEKE      | jose@hmail.com         |    6 |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango     | ruhondo      | josiane@gmail.com      |    7 |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma    | benishyaka   | nick@gmail.com         |    8 |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira    | nyirangarama | shukuru@gmail.com      |    9 |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga    | ngaburira    | josephy@gmail.com      |   10 |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+------+
+10 rows in set (0.001 sec)
+
+
+MariaDB [RUHANDE]> ALTER TABLE NGOMA CHANGE LIST LISTS INT(10);
+Query OK, 10 rows affected (0.049 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+-------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR    | CELL         | EMAIL                  | LISTS |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+-------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma     | ruhande      | iranziclaude@gmail.com |     1 |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali    | kigali       | musabika@gmail.com     |     2 |
+| 2147483647 | uwera       | belyse   | F      | kigali city | nyarugenge | nyabugogo | giti         | nadia@gmail.com        |     3 |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe  | BUSHEKE      | uwera@gmail.com        |     4 |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma     | ruhande      | emeraud@gmail.com      |     5 |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata   | BUSHEKE      | jose@hmail.com         |     6 |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango     | ruhondo      | josiane@gmail.com      |     7 |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma    | benishyaka   | nick@gmail.com         |     8 |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira    | nyirangarama | shukuru@gmail.com      |     9 |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga    | ngaburira    | josephy@gmail.com      |    10 |
++------------+-------------+----------+--------+-------------+------------+-----------+--------------+------------------------+-------+
+10 rows in set (0.014 sec)
+
+MariaDB [RUHANDE]> DELETE FROM NGOMA WHERE L_NAME = "BELYSE";
+Query OK, 1 row affected (0.016 sec)
+
+MariaDB [RUHANDE]> SELECT * FROM NGOMA;
++------------+-------------+----------+--------+-------------+------------+----------+--------------+------------------------+-------+
+| id         | F_NAME      | L_NAME   | GENDER | PROVINCE    | DISTRICT   | SECTOR   | CELL         | EMAIL                  | LISTS |
++------------+-------------+----------+--------+-------------+------------+----------+--------------+------------------------+-------+
+| 2147483647 | claude      | iranzi   | M      | North       | musanze    | ngoma    | ruhande      | iranziclaude@gmail.com |     1 |
+| 2147483647 | musabika    | fidele   | M      | kigali city | nyarigenge | kigali   | kigali       | musabika@gmail.com     |     2 |
+| 2147483647 | uwera       | nadia    | F      | north       | rurindo    | kimbabwe | BUSHEKE      | uwera@gmail.com        |     4 |
+| 2147483647 | cyezamutima | emeraudi | F      | south       | huye       | ngoma    | ruhande      | emeraud@gmail.com      |     5 |
+| 2147483647 | uwineza     | joselyne | F      | east        | bugesera   | nyamata  | BUSHEKE      | jose@hmail.com         |     6 |
+| 2147483647 | josiane     | uwera    | F      | kigali      | kicukiro   | rango    | ruhondo      | josiane@gmail.com      |     7 |
+| 2147483647 | nick        | name     | f      | east        | nyagatare  | rukoma   | benishyaka   | nick@gmail.com         |     8 |
+| 2147483647 | shukuru     | mungu    | M      | north       | rurindo    | kirira   | nyirangarama | shukuru@gmail.com      |     9 |
+| 2147483647 | joseph      | rukundo  | M      | east        | rwamagana  | ntunga   | ngaburira    | josephy@gmail.com      |    10 |
++------------+-------------+----------+--------+-------------+------------+----------+--------------+------------------------+-------+
+9 rows in set (0.001 sec)
+
+
